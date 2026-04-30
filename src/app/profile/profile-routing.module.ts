@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routers, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 import { DetailsComponent } from './details.component';
@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     children: [
         { path: '', component: DetailsComponent},
-        { paht: 'update', component: UpdateComponent}
+        { path: 'update', component: UpdateComponent}
     ]
     }
 ];

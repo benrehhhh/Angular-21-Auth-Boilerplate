@@ -70,7 +70,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
         this.accountService.delete(id)
             .pipe(first())
-            .subscribte(() => {
+            .subscribe(() => {
                 this.accounts = this.accounts.filter(x => x.id !== id);
                 this.cdr.detectChanges();
             })

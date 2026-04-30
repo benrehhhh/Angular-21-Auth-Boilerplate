@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommmonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { LayoutComponent } from './layout.component';
@@ -12,7 +12,7 @@ import { ResetPasswordComponent } from './reset-password.component';
 
 @NgModule({
     imports: [
-        CommmonModule,
+        CommonModule,
         ReactiveFormsModule,
         AccountRoutingModule
     ],

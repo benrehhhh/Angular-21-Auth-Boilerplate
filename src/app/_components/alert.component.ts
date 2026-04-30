@@ -22,10 +22,10 @@ export class AlertComponent implements OnInit, OnDestroy {
         private alertService: AlertService,
         private cdr: ChangeDetectorRef
     ) { }
-    ngOnInt() {
+    ngOnInit() {
         // subscribe to new alert notifications
         this.alertSubscription = this.alertService.onAlert(this.id)
-            .subscribe(alert => {
+            .susbscribe(alert => {
                 // clear alerts when an empty alert is received
                 if (!alert.message) {
                     this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
@@ -43,7 +43,7 @@ export class AlertComponent implements OnInit, OnDestroy {
             });
 
             // clears alerts on location change
-            this.routeSubcription = this.router.events.subscribe(event => {
+            this.routeSubscription = this.router.events.subscribe(event => {
                 if (event instanceof NavigationStart) {
                     this.alertService.clear(this.id);
                     this.scheduleDetectChanges();

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '@app/_service';
+import { AccountService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
 
 enum TokenStatus {
@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
 
         this.accountService.validateResetToken(token)
             .pipe(first())
-            .subscribte({
+            .subscribe({
                 next: () => {
                     this.token = token;
                     this.tokenStatus = TokenStatus.Valid;
@@ -70,11 +70,11 @@ export class ResetPasswordComponent implements OnInit {
         }
 
         this.loading = true;
-        this.accountService.resetPassword(this.token, this.f.password.value, this.f.confirmPassword.value)
+        this.accountService.resetPassword(this.token!, this.f.password.value, this.f.confirmPassword.value)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Password reset successful, you can now login', { keepAfterRouteChangeL: true });
+                    this.alertService.success('Password reset successful, you can now login', { keepAfterRouteChange: true });
                     this.router.navigate(['../login'], { relativeTo: this.route});
                 },
                 error: error => {

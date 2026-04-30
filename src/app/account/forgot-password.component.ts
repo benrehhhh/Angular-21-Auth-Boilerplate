@@ -16,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
         private alertService: AlertService
     ) { }
 
-    ngOnInt() {
+    ngOnInit() {
         this.form = this.formBuilder.group ({
             email: ['', [Validators.required, Validators.email]]
         });

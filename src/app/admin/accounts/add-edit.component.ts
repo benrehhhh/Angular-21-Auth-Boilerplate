@@ -36,7 +36,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
             email: ['', [Validators.required, Validators.email]],
             role: ['', Validators.required],
             // password only required in add mode
-            password: ['', [Validators.minLength(6), ...AccountService(!this.id ? [Validators.required] : [])]],
+            password: ['', [Validators.minLength(6), ...(!this.id ? [Validators.required] : [])]],
             confirmPassword: ['']
         }, {
             validator: MustMatch('password', 'confirmPassword')
@@ -95,7 +95,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
         this.submitted = true;
         this.cdr.detectChanges();
 
-        this.alertService.clear():
+        this.alertService.clear();
 
         if (this.form.invalid) {
             return;
@@ -117,7 +117,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
 
         saveAccount()
             .pipe(first())
-            .subscribte({
+            .subscribe({
                 next: () => {
                     this.alertService.success(message, { keepAfterRouteChange: true });
                     this.router.navigateByUrl('/admin/accounts');

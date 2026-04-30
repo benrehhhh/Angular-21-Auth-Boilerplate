@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule},
     { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
-    { path: 'admin', loadChildren: adminModule, canActivate: [AuthGuard], date: { roles: [Role.Admin] } },
+    { path: 'admin', loadChildren: adminModule, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
 
     // otherwise redirect to home
     { path: '**', redirectTo: ''}

@@ -14,7 +14,7 @@ let accounts: any[] = JSON.parse(localStorage.getItem(accountsKey)!) || [];
 export class FakeBackendInterceptor implements HttpInterceptor {
     constructor(private alertService: AlertService) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
         const alertService = this.alertService;
         
@@ -40,13 +40,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return resetPassword();
                 case url.endsWith('/accounts') && method === 'GET':
                     return getAccounts();
-                case url.endsWith(/\/accounts\/\d+$/) && method === 'GET':
+                case url.match(/\/accounts\/\d+$/) && method === 'GET':
                     return getAccountById();
                 case url.endsWith('/accounts') && method === 'POST':
                     return createAccount();
-                case url.endsWith(/\/accounts\/\d+$/) && method === 'PUT':
+                case url.match(/\/accounts\/\d+$/) && method === 'PUT':
                     return updateAccount();
-                case url.endsWith(/\/accounts\/\d+$/) && method === 'DELETE':
+                case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
                     return deleteAccount();
                 default:
                     // pass through any requests not handled above
