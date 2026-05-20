@@ -133,7 +133,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
             account.dateCreated = new Date().toISOString();
             account.verificationToken = new Date().getTime().toString();
-            account.isVerified = false;
+            account.isVerified = true;
             account.refreshTokens = [];
             delete account.confirmPassword;
             accounts.push(account);
@@ -177,7 +177,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // create reset token that expires after 24 hours
             account.resetToken = new Date().getTime().toString();
             account.resetTokenExpires = new Date(Date.now() + 24*60*60*1000).toISOString();
-            localStorage.setTime(accountsKey, JSON.stringify(accounts));
+            localStorage.setItem(accountsKey, JSON.stringify(accounts));
 
             // display password reset email in alert
             setTimeout(() => {
@@ -195,10 +195,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function validateResetToken() {
             const { token } = body;
+
+            console.log('Token received for validation:', token);
+            console.log('All accounts:', accounts);
+            console.log('Account reset tokens:', accounts.map(x => ({ 
+                email: x.email, 
+                resetToken: x.resetToken,
+                resetTokenExpires: x.resetTokenExpires 
+            })));
+
             const account = accounts.find(x =>
                 !!x.resetToken && x.resetToken === token &&
                 new Date() < new Date(x.resetTokenExpires)
             );
+
+            console.log('Found account:', account);
 
             if (!account) return error('Invalid token');
 

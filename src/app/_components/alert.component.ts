@@ -22,6 +22,7 @@ export class AlertComponent implements OnInit, OnDestroy {
         private alertService: AlertService,
         private cdr: ChangeDetectorRef
     ) { }
+
     ngOnInit() {
         // subscribe to new alert notifications
         this.alertSubscription = this.alertService.onAlert(this.id)
@@ -56,6 +57,7 @@ export class AlertComponent implements OnInit, OnDestroy {
         this.alertSubscription.unsubscribe();
         this.routeSubscription.unsubscribe();
     }
+
     removeAlert(alert: Alert) {
         // check if already removed to prevent error on auto close
         if (!this.alerts.includes(alert)) return;
@@ -73,6 +75,7 @@ export class AlertComponent implements OnInit, OnDestroy {
             this.scheduleDetectChanges();
         }
     }
+    
     cssClasses(alert: Alert) {
         if (!alert) return;
 
