@@ -1,3 +1,4 @@
+# DOCUMENTATION LINK: https://docs.google.com/document/d/1RcO-3GE60TTIQseMbnHQ32oYScNoCrAAqQ7lmnJM0-Q/edit?usp=sharing
 # Angular 21 Auth Boilerplate (Beginner Guide)
 
 This project is a beginner-friendly Angular 21 boilerplate that demonstrates a complete authentication flow:
