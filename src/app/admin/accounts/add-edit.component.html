@@ -73,11 +73,11 @@
         </div>
     </div>
     <div class="mb-3">
-        <button [disabled]="submitting" class="btn btn=primary">
+        <button [disabled]="submitting" class="btn btn-primary">
             <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
             Save
         </button>
-        <a routerLink="/admin/accoutns" class="btn btn-link">Cancel</a>
+        <a routerLink="/admin/accounts" class="btn btn-link">Cancel</a>
     </div>
 </form>
 <div *ngIf="loading" class="text-center m-5">
